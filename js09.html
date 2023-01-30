@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h3 class="items-heading">Fetured Items</h3>
+    <p class="items-description">Shop for items based on what we featured in this week</p>
+   
+
+    <div class="product-box"></div>
+
+    <script src="json.js"></script>
+
+    <script>
+
+
+        const productBox = document.querySelector('.product-box');
+
+        const data = JSON.parse(dataProducts);
+        console.log(data);
+        data.forEach(element => {
+            const productEl = document.createElement('div');
+            productEl.classList.add('product');
+
+            const productImg = document.createElement('img');
+            productImg.classList.add('product_img');
+            productImg.setAttribute('alt', element.id);
+            productImg.src = element.img;
+
+            const productContent = document.createElement('div');
+            productContent.classList.add('product_content');
+
+            const productLink = document.createElement('a');
+            productLink.href = element.link;
+            productLink.textContent = element.name;
+
+            const productText = document.createElement('p');
+            productText.classList.add('product_text');
+            productText.textContent = element.description;
+
+            const productPrice = document.createElement('p');
+            productPrice.classList.add('product_price');
+            productPrice.textContent = element.price;
+
+            productContent.appendChild(productLink);
+            productContent.appendChild(productText);
+            productContent.appendChild(productPrice);
+            productEl.appendChild(productImg);
+            productEl.appendChild(productContent);
+            productBox.appendChild(productEl);
+        });
+
+
+    </script>
+</body>
+
+</html>
